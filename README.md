@@ -1,2 +1,2 @@
-# My-Arduino-Programs
-A general place for all my Arduino programs.
+# My-Arduino-Sketches
+A general place for all my Arduino sketches.
