@@ -1,7 +1,8 @@
 
 //SCAREBEAR
 
-int RELAY = 12;
+int RELAY1 = 1;
+int RELAY2 = 2;
 //The pin that the relay is connected to.
 
 long randNumber;
@@ -14,7 +15,8 @@ int counter = 3;
 
 void setup() {
  
-pinMode(RELAY, OUTPUT);
+pinMode(RELAY1, OUTPUT);
+pinMode(RELAY2, OUTPUT);
 pinMode(Triggered, INPUT);
 
 
