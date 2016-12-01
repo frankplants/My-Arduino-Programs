@@ -7,7 +7,7 @@ int RELAY2 = 2;
 
 long randNumber;
 
-int Triggered = 8;
+int Triggered = 3;
 //The pin that the our headphone jack is connected to.
 
 int counter = 3; 
@@ -26,24 +26,26 @@ void loop() {
 
  if (digitalRead(Triggered) == HIGH) {
 
-
- //If the headphone jack is pulled, on for a minute to start.
- digitalWrite(RELAY, LOW);
+ //RELAY1 is on for a minute and RELAY2 is off for a minute
+ digitalWrite(RELAY1, HIGH);
+ digitalWrite(RELAY2, LOW);
  delay(60000); 
 
- digitalWrite(RELAY, HIGH);
- delay(60000); //Off for a minute
+ digitalWrite(RELAY2, HIGH);
+ digitalWrite(RELAY1, LOW);               
+ delay(60000); 
  
  do {
   randNumber = random(30000 , 120000); 
   //randomizes between 30 seconds and 2 minutes
   Serial.println(randNumber);
-  digitalWrite(RELAY, LOW);
+  digitalWrite(RELAY1, HIGH);
+  digitalWrite(RELAY2, LOW);
   delay(randNumber);
   
   randNumber = random(30000 , 120000);
-  Serial.println(randNumber);
-  digitalWrite(RELAY, HIGH);
+  digitalWrite(RELAY2, HIGH);
+  digitalWrite(RELAY1, LOW); 
   delay(randNumber);
   counter--; //Count down from 3
  
@@ -51,7 +53,7 @@ void loop() {
 
 }
 else {
-
-digitalWrite(RELAY, HIGH);
+digitalWrite(RELAY1, LOW);
+digitalWrite(RELAY2, LOw);
 }
 }
