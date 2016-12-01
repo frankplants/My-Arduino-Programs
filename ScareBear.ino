@@ -1,8 +1,7 @@
 
 //SCAREBEAR
 
-int RELAY1 = 1;
-int RELAY2 = 2;
+int RELAY1 = 1
 //The pin that the relay is connected to.
 
 long randNumber;
@@ -28,10 +27,8 @@ void loop() {
 
  //RELAY1 is on for a minute and RELAY2 is off for a minute
  digitalWrite(RELAY1, HIGH);
- digitalWrite(RELAY2, LOW);
  delay(60000); 
 
- digitalWrite(RELAY2, HIGH);
  digitalWrite(RELAY1, LOW);               
  delay(60000); 
  
@@ -40,11 +37,9 @@ void loop() {
   //randomizes between 30 seconds and 2 minutes
   Serial.println(randNumber);
   digitalWrite(RELAY1, HIGH);
-  digitalWrite(RELAY2, LOW);
   delay(randNumber);
   
   randNumber = random(30000 , 120000);
-  digitalWrite(RELAY2, HIGH);
   digitalWrite(RELAY1, LOW); 
   delay(randNumber);
   counter--; //Count down from 3
@@ -54,6 +49,5 @@ void loop() {
 }
 else {
 digitalWrite(RELAY1, LOW);
-digitalWrite(RELAY2, LOw);
 }
 }
