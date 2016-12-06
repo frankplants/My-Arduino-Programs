@@ -25,21 +25,21 @@ void loop() {
  if (digitalRead(Triggered) == HIGH) {
 
  //RELAY1 is on for a minute and RELAY2 is off for a minute
- digitalWrite(RELAY1, HIGH);
+ digitalWrite(RELAY1, LOW);
  delay(60000); 
 
- digitalWrite(RELAY1, LOW);               
+ digitalWrite(RELAY1, HIGH);               
  delay(60000); 
  
  do {
   randNumber = random(30000 , 120000); 
   //randomizes between 30 seconds and 2 minutes
   Serial.println(randNumber);
-  digitalWrite(RELAY1, HIGH);
+  digitalWrite(RELAY1, LOW);
   delay(randNumber);
   
   randNumber = random(30000 , 120000);
-  digitalWrite(RELAY1, LOW); 
+  digitalWrite(RELAY1, HIGH); 
   delay(randNumber);
   counter--; //Count down from 3
  
@@ -47,6 +47,6 @@ void loop() {
 
 }
 else {
-digitalWrite(RELAY1, LOW);
+digitalWrite(RELAY1, HIGH);
 }
 }
