@@ -7,7 +7,7 @@ int RELAY1 = 1;
 long randNumber;
 int isOff = HIGH;
 int Triggered = 3;
-//The pin that the headphone jack is connected to.
+//The pin that the clothes pin is connected to.
 
 int counter = 3; 
 //The amount of times it randomizes being on and off
