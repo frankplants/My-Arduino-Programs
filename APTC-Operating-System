@@ -100,9 +100,9 @@ void setup(void)
   }
   
 
-  logfile.println("millis, stamp, datetime, CH4VOLTAGE_01, CH4VOLTAGE_02, CO2VOLTAGE_01, CO2VOLTAGE_02, CH4PPM_01, CH4PPM_02, CO2PPM_01, CO2PPM_02");
+  logfile.println("millis, stamp, datetime, CH4VOLTAGE_01, CH4VOLTAGE_02, CO2VOLTAGE_01, CO2VOLTAGE_02, CH4PPM_01, CH4PPM_02, CO2PPM_01, CO2PPM_02, CH4PPM_AVG, CO2PPM_AVG");
   #if ECHO_TO_SERIAL
-  Serial.println("millis, stamp, datetime, CH4VOLTAGE_01, CH4VOLTAGE_02, CO2VOLTAGE_01, CO2VOLTAGE_02, CH4PPM_01, CH4PPM_02, CO2PPM_01, CO2PPM_02 ");
+  Serial.println("millis, stamp, datetime, CH4VOLTAGE_01, CH4VOLTAGE_02, CO2VOLTAGE_01, CO2VOLTAGE_02, CH4PPM_01, CH4PPM_02, CO2PPM_01, CO2PPM_02, CH4PPM_AVG, CO2PPM_AVG");
   #endif
  
   // If you want to set the aref to something other than 5v
@@ -194,11 +194,11 @@ void loop(void)
   logfile.print(", ");
   logfile.print(CH4PPM_02);
   logfile.print(", ");
-  logfile.print(CH4PPM_AVG);
-  logfile.print(", ");
   logfile.print(CO2PPM_01);
   logfile.print(", ");
   logfile.print(CO2PPM_02);
+  logfile.print(", ");
+  logfile.print(CH4PPM_AVG);
   logfile.print(", ");
   logfile.print(CO2PPM_AVG);
   logfile.println();
