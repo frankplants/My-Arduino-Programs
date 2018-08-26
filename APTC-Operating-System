@@ -5,7 +5,8 @@
 #include <Wire.h>
 #include "RTClib.h"
 
-LiquidCrystal_I2C lcd(0x27); 
+LiquidCrystal_I2C lcd(0x27);
+
 
 // how many milliseconds between grabbing data and logging it. 1000 ms is once a second
 #define LOG_INTERVAL  1000 // mills between entries (reduce to take more/faster data)
@@ -18,13 +19,7 @@ LiquidCrystal_I2C lcd(0x27);
 uint32_t syncTime = 0; // time of last sync()
 
 #define ECHO_TO_SERIAL   1 // echo data to serial port
-#define WAIT_TO_START    0 // Wait for serial input in setup()
-
-// the digital pins that connect to the LEDs
-
-// The analog pins that connect to the sensors
-// special indicator that we want to measure the bandgap
-
+#define WAIT_TO_START    0 // Wait for serial input in setup
      
 
 RTC_PCF8523 RTC; // define the Real Time Clock object
@@ -48,13 +43,14 @@ void error(char *str)
 
 void setup(void)
 {
+  
   Serial.begin(9600);
   Serial.println();
-  
-  lcd.begin(16, 2);
-  lcd.setCursor(0, 0);
-  lcd.print("CH4      CO2");
-  
+
+  lcd.begin(16, 2); 
+  lcd.setCursor(0,0);
+  lcd.print("Welcome to APTC!");
+
   
 #if WAIT_TO_START
   Serial.println("Type any character to start");
@@ -206,13 +202,75 @@ void loop(void)
   logfile.print(", ");
   logfile.print(CO2PPM_AVG);
   logfile.println();
-    
-  lcd.setCursor(0, 1);
+
+  
+  int Counter = 1;
+  int ButtonPin = 8;
+  pinMode(ButtonPin, INPUT);
+  int ButtonInput = digitalRead(ButtonPin);
+  
+  if(ButtonInput = HIGH){
+  
+    Counter++;
+  
+   }
+
+  if(Counter > 3){
+
+    Counter = 1;
+  
+  }
+  
+  
+  switch(Counter){
+
+  case 1:
+  lcd.setCursor(0, 0);
+  lcd.print("AVGCH4:");
+  lcd.setCursor(0, 9);
+  lcd.print("AVGCO2:");
+  lcd.setCursor(1, 5);
+  lcd.print("ppm");
+  lcd.setCursor(1, 13);
+  lcd.print("ppm");
+  lcd.setCursor(1, 0);
   lcd.print(CH4PPM_AVG);
-  lcd.print("    ppm");
-  lcd.setCursor(10, 1);
+  lcd.setCursor(1, 9);
   lcd.print(CO2PPM_AVG);
-  lcd.print("    ppm"); 
+  break;
+
+  case 2:
+  lcd.setCursor(0, 0);
+  lcd.print("CH4PPM_01:");
+  lcd.setCursor(0, 9);
+  lcd.print("CO2PPM_01:");
+  lcd.setCursor(1, 5);
+  lcd.print("ppm");
+  lcd.setCursor(1, 13);
+  lcd.print("ppm");
+  lcd.setCursor(1, 0);
+  lcd.print(CH4PPM_01);
+  lcd.setCursor(1, 9);
+  lcd.print(CO2PPM_01);
+  break;
+  
+  case 3:
+  lcd.setCursor(0, 0);
+  lcd.print("CH4PPM_02:");
+  lcd.setCursor(0, 9);
+  lcd.print("CO2PPM_02:");
+  lcd.setCursor(1, 5);
+  lcd.print("ppm");
+  lcd.setCursor(1, 13);
+  lcd.print("ppm");
+  lcd.setCursor(1, 0);
+  lcd.print(CH4PPM_02);
+  lcd.setCursor(1, 9);
+  lcd.print(CO2PPM_02);
+  break;
+    
+  }
+ 
   
  #if ECHO_TO_SERIAL 
   Serial.print(CH4VOLTAGE_01); 
