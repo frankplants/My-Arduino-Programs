@@ -70,16 +70,17 @@ void setup(void)
   Serial.println("card initialized.");
   
   // create a new file
-  char filename[] = "ArtificialChloroplast00.CSV";
+   char filename[] = "LOGGER00.CSV";
   for (uint8_t i = 0; i < 100; i++) {
-    filename[22] = i/10 + '0';
-    filename[23] = i%10 + '0';
+    filename[6] = i/10 + '0';
+    filename[7] = i%10 + '0';
     if (! SD.exists(filename)) {
       // only open a new file if it doesn't exist
       logfile = SD.open(filename, FILE_WRITE); 
       break;  // leave the loop!
     }
   }
+  
   
   if (! logfile) {
     error("couldnt create file");
