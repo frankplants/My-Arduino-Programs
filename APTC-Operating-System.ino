@@ -5,10 +5,10 @@
 #include <Wire.h>
 #include "RTClib.h"
 
-LiquidCrystal_I2C lcd(0x27);
+LiquidCrystal_I2C lcd(0x3F, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 
 
-// how many milliseconds between grabbing data and logging it. 1000 ms is once a second
+// how many milliseco nds between grabbing data and logging it. 1000 ms is once a second
 #define LOG_INTERVAL  1000 // mills between entries (reduce to take more/faster data)
 
 // how many milliseconds before writing the logged data permanently to disk
@@ -195,11 +195,11 @@ void loop(void)
   logfile.print(", ");
   logfile.print(CH4PPM_02);
   logfile.print(", ");
+  logfile.print(CH4PPM_AVG);
+  logfile.print(", ");
   logfile.print(CO2PPM_01);
   logfile.print(", ");
   logfile.print(CO2PPM_02);
-  logfile.print(", ");
-  logfile.print(CH4PPM_AVG);
   logfile.print(", ");
   logfile.print(CO2PPM_AVG);
   logfile.println();
